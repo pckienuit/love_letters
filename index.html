@@ -3,10 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Love Letters - Dev Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .project-path {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-family: 'Courier New', monospace;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        
+        .project-description {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tech-tag {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 16px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <a href="./gift_heartstar/">gift_heartstar</a>
+    <div class="container">
+        <div id="projects-container" class="projects-grid">
+            <!-- Projects will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Danh sách các dự án
+        const projects = [
+            {
+                folder: 'gift_heartstar',
+                title: 'Heart of Stars',
+                description: 'Interactive heart animation with stars and falling text effects',
+                tech: ['Canvas', 'JavaScript', 'CSS3', 'Audio']
+            }
+        ];
+
+        // Render projects
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            
+            projects.forEach(project => {
+                const card = document.createElement('a');
+                card.href = `./${project.folder}/`;
+                card.className = 'project-card';
+                
+                card.innerHTML = `
+                    <h3 class="project-title">${project.title}</h3>
+                    <div class="project-path">./${project.folder}/</div>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tech">
+                        ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
 </body>
 </html>
