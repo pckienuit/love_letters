@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    overflow: hidden;
+    user-select: none;
+    position: relative;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#textCanvas {
+    display: block;
+    cursor: grab;
+    background: transparent;
+    width: 100vw;
+    height: 100vh;
+}
+
+#textCanvas:active {
+    cursor: grabbing;
+}
+
+.instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.instructions p {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.instructions p:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .instructions {
+        left: 10px;
+        bottom: 10px;
+        padding: 10px 15px;
+    }
+    
+    .instructions p {
+        font-size: 12px;
+    }
+}
+
+/* Hiệu ứng loading */
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.loading {
+    animation: pulse 2s infinite;
+}
